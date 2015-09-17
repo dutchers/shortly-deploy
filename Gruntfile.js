@@ -133,7 +133,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'jshint', 'test', 'cssmin', 'concat', 'uglify'
+    'jshint', 'cssmin', 'concat', 'uglify'
   ]);
 
   grunt.registerTask('upload', function(n) {
