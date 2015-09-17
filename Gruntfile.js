@@ -3,24 +3,26 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
-      options: {
-        separator: ';'
-      },
-      dist: {
+      dist1: {
         src: [
           'public/lib/jquery.js',
           'public/lib/underscore.js',
           'public/lib/handlebars.js',
-          'public/lib/backbone.js',
+          'public/lib/backbone.js'
+        ],
+        dest: 'public/dist/libs.js'
+      },
+      dist2: {
+        src: [
+          'public/client/app.js',
           'public/client/link.js',
           'public/client/links.js',
           'public/client/linksView.js',
           'public/client/linkView.js',
           'public/client/createLinkView.js',
           'public/client/router.js',
-          'public/client/app.js',
-        ],
-        dest: 'dist/built.js'
+          ],
+        dest: 'public/dist/app.js'
       }
     },
 
@@ -42,7 +44,8 @@ module.exports = function(grunt) {
     uglify: {
       my_target: {
         files: {
-          'dist/built.min.js': 'dist/built.js',
+          'public/dist/app.min.js': 'public/dist/app.js',
+          'public/dist/libs.min.js': 'public/dist/libs.js',
         }        
       }
     },
@@ -113,12 +116,12 @@ module.exports = function(grunt) {
     var nodemon = grunt.util.spawn({
          cmd: 'grunt',
          grunt: true,
-         args: 'nodemon'
+         args: ['PORT=1234', 'nodemon']
     });
     nodemon.stdout.pipe(process.stdout);
     nodemon.stderr.pipe(process.stderr);
 
-    // grunt.task.run([ 'watch' ]); 
+    grunt.task.run([ 'watch' ]); 
   });
 
   ////////////////////////////////////////////////////
@@ -130,7 +133,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'jshint'
+    'jshint', 'test', 'cssmin', 'concat', 'uglify'
   ]);
 
   grunt.registerTask('upload', function(n) {
