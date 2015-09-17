@@ -118,7 +118,7 @@ module.exports = function(grunt) {
     nodemon.stdout.pipe(process.stdout);
     nodemon.stderr.pipe(process.stderr);
 
-    // grunt.task.run([ 'watch' ]);
+    // grunt.task.run([ 'watch' ]); 
   });
 
   ////////////////////////////////////////////////////
@@ -135,14 +135,14 @@ module.exports = function(grunt) {
 
   grunt.registerTask('upload', function(n) {
     if(grunt.option('prod')) {
-      grunt.task.run([ 'prepareForDeploy', 'shell' ])
+      grunt.task.run([ 'shell' ])
     } else {
       grunt.task.run([ 'server-dev' ]);
     }
   });
 
-  grunt.registerTask('prepareForDeploy', [
-      'jshint', 'test', 'cssmin', 'concat', 'uglify'
+  grunt.registerTask('deploy', [
+      'jshint', 'test', 'cssmin', 'concat', 'uglify', 'upload'
   ]);
 
 
