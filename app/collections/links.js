@@ -6,4 +6,6 @@ var Links = new db.Collection();
 
 Links.model = Link;
 
+console.log("Hello!");
+
 module.exports = Links;
