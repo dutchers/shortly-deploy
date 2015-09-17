@@ -15,6 +15,8 @@ var path = require('path');
 //   }
 // });
 
+var Schema = mongoose.Schema; 
+
 var urlSchema = new Schema({
   url: String,
   base_url: String,
@@ -25,9 +27,6 @@ var urlSchema = new Schema({
   user_id: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
-urlSchema.methods.createHash = function(password) {
-
-};
 
 module.exports.Url = mongoose.model('Url', urlSchema);
 
@@ -37,9 +36,17 @@ var userSchema = new Schema({
   timestamps: { type: Date, default: Date.now }
 });
 
+userSchema.methods.createHash = function(password, cb) {
+  bcrypt.hash(password, null, null, cb); //callback takes err, hash
+};
+
+userSchema.methods.authenticate = function(password, cb) { //authenticates password with hash in DB
+  bcrypt.compare(password, this.password, cb) //callback takes err and a boolean
+}
+
 module.exports.User = mongoose.model('User', userSchema);
 
-module.exports = db;
+// module.exports = db;
 
 
 // db.knex.schema.hasTable('urls').then(function(exists) {

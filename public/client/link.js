@@ -1,3 +1,4 @@
 Shortly.Link = Backbone.Model.extend({
-  urlRoot: '/links'
+  urlRoot: '/links',
+  idAttribute: '_id'
 });
