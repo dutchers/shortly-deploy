@@ -116,7 +116,7 @@ module.exports = function(grunt) {
     var nodemon = grunt.util.spawn({
          cmd: 'grunt',
          grunt: true,
-         args: ['PORT=1234', 'nodemon']
+         args: 'nodemon'
     });
     nodemon.stdout.pipe(process.stdout);
     nodemon.stderr.pipe(process.stderr);
@@ -145,7 +145,7 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('deploy', [
-      'jshint', 'test', 'cssmin', 'concat', 'uglify', 'upload'
+      'jshint', 'cssmin', 'concat', 'uglify', 'upload'
   ]);
 
 

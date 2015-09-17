@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/shortee');
+mongoose.connect('mongodb://Shortee-DB:HdJzmJy.NSFrsdSx2UC8q5hZW7O7uWCeIRDkUP1m8sY-@ds042898.mongolab.com:42898/Shortee-DB');
 var bcrypt = require('bcrypt-nodejs');
 var path = require('path');
 
