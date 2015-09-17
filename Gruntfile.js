@@ -118,7 +118,7 @@ module.exports = function(grunt) {
     nodemon.stdout.pipe(process.stdout);
     nodemon.stderr.pipe(process.stderr);
 
-    grunt.task.run([ 'watch' ]);
+    // grunt.task.run([ 'watch' ]);
   });
 
   ////////////////////////////////////////////////////
@@ -130,7 +130,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', [
-    'jshint', 'watch'
+    'jshint'
   ]);
 
   grunt.registerTask('upload', function(n) {
