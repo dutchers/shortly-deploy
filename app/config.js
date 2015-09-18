@@ -23,7 +23,7 @@ var urlSchema = new Schema({
   base_url: String,
   code: String,
   title: String,
-  visits: Number,
+  visits: {type: Number, default: 0},
   timestamps: { type: Date, default: Date.now },
   user_id: { type: Schema.Types.ObjectId, ref: 'User' }
 });
