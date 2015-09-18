@@ -31,7 +31,7 @@ var urlSchema = new Schema({
 urlSchema.methods.createCode = function () {
   var shasum = crypto.createHash('sha1');
   shasum.update(this.url);
-  this.code = shasu.diget('hex').slice(0, 5);
+  this.code = shasum.digest('hex').slice(0, 5);
 
 }
 
