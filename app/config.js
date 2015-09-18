@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://Shortee-DB:HdJzmJy.NSFrsdSx2UC8q5hZW7O7uWCeIRDkUP1m8sY-@ds042898.mongolab.com:42898/Shortee-DB');
 var bcrypt = require('bcrypt-nodejs');
+var crypto = require('crypto');
 var path = require('path');
 
 // var db = Bookshelf.initialize({
@@ -27,6 +28,12 @@ var urlSchema = new Schema({
   user_id: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
+urlSchema.methods.createCode = function () {
+  var shasum = crypto.createHash('sha1');
+  shasum.update(this.url);
+  this.code = shasu.diget('hex').slice(0, 5);
+
+}
 
 module.exports.Url = mongoose.model('Url', urlSchema);
 
